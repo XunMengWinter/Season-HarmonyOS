@@ -28,16 +28,8 @@ export class CalendarViewModel {
         console.error(this.error);
         return;
       }
-
       // Safely parse and cast to BaseResult<CalendarDay[]>
       const baseResult = JSON.parse(response.result.toString()) as BaseResult<CalendarDay[]>;
-      // if (baseResult.error_code != 200) {
-      //   this.error = baseResult.msg || 'Unknown error from server';
-      //   console.error(`Error from server: ${this.error}`);
-      //   return;
-      // }
-
-      // Map the fetched data into calendarDays
       this.calendarDays = baseResult.data!
     } catch (e) {
       // Handle any exceptions

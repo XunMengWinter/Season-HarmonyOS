@@ -1,4 +1,5 @@
 import { ZodiacRange } from "./ZodiacRange"
+import { hilog } from "@kit.PerformanceAnalysisKit"
 
 export class CalendarDay {
   title: string = ''
@@ -12,6 +13,8 @@ export class CalendarDay {
   solarTerm?: string
   holiday?: string
   imageUrl: string = ''
+  // weekStr: string = ""
+  zodiac: string = ""
 
   constructor(data: Partial<CalendarDay>) {
     // Assign properties manually
@@ -26,30 +29,39 @@ export class CalendarDay {
     this.solarTerm = data.solarTerm
     this.holiday = data.holiday
     this.imageUrl = data.imageUrl || ''
+    // this.weekStr = CalendarDay.getWeekStr(data.weekday || 0)
+    this.zodiac = CalendarDay.getZodiacSign(data.datestamp || "")
+  }
+
+  get weekStr(): string {
+    console.info('Getting weekStr for weekday:', this.weekday); // Debug weekday value
+    const weekdays = ['', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期天'];
+    return weekdays[this.weekday] || '未知';
   }
 
   getSimpleStr(): string {
     return `${this.datestamp.substring(0, 4)} - ${this.datestamp.substring(4, 6)} - ${this.datestamp.substring(6)}`
   }
 
-  getWeekStr(): string {
-    const weekdays = ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期天']
-    return weekdays[this.weekday - 1] || '未知'
+  static getWeekStr(weekday: number): string {
+    console.log(weekday + "")
+    const weekdays = ['', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期天']
+    return weekdays[weekday]
   }
 
-  getLunar(): string {
-    return this.lunar.split(' ').pop() || ''
+  static getLunar(lunar: string): string {
+    return lunar.split(' ').pop() || ''
   }
 
-  getZodiacSign(): string {
-    if (this.datestamp.length !== 8) {
+  static getZodiacSign(datestamp: string): string {
+    if (datestamp.length !== 8) {
       console.warn('Invalid datestamp format, expected YYYYMMDD');
       return 'Unknown';
     }
 
-    const year = parseInt(this.datestamp.substring(0, 4), 10);
-    const month = parseInt(this.datestamp.substring(4, 6), 10);
-    const day = parseInt(this.datestamp.substring(6, 8), 10);
+    const year = parseInt(datestamp.substring(0, 4), 10);
+    const month = parseInt(datestamp.substring(4, 6), 10);
+    const day = parseInt(datestamp.substring(6, 8), 10);
 
     if (isNaN(year) || isNaN(month) || isNaN(day)) {
       console.warn('Invalid date components in datestamp');

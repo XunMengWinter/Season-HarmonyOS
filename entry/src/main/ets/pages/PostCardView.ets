@@ -1,72 +1,92 @@
 import { CalendarDay } from '../model/CalendarDay'
-import { CircleShape } from '@kit.ArkUI'
 
 @Entry
 @Component
 struct PostCardView {
   @Prop post: CalendarDay
-
   private cardPadding: number = 24
   private dateSpacing: number = 12
 
   build() {
     Column({ space: 0 }) {
-      // Image Section
+      // 图片部分
       Image(this.post.imageUrl)
         .width('100%')
-        .aspectRatio(1.5) // Scales the image
+        .aspectRatio(1)
         .objectFit(ImageFit.Cover)
         .clip(true)
         .backgroundColor(Color.Gray)
 
-      // Post Details Section
-      Column({ space: 8 }) {
-        // Title and Date Row
-        Row({ space: this.dateSpacing }) {
+      // 内容部分
+      Column({ space: 16 }) {
+        Row({ space: 12 }) {
+          // 标题和副标题
           Column({ space: 8 }) {
             Text(this.post.title)
               .fontSize(20)
               .fontWeight(FontWeight.Bold)
               .fontColor(Color.Black)
 
-            if (this.post.subtitle && this.post.subtitle !== '') {
+            if (this.post.subtitle) {
               Text(this.post.subtitle)
                 .fontSize(16)
                 .fontColor(Color.Gray)
             }
-          }.flexGrow(1)
-
-          Text(this.post.day)
-            .fontSize(36)
-            .fontWeight(FontWeight.Bold)
-            .fontColor(Color.Black)
-        }
-
-        // Description and Month Row
-        Row({ space: this.dateSpacing }) {
-          if (this.post.desc && this.post.desc !== '') {
+            // 描述文本
             Text(this.post.desc)
               .fontSize(16)
               .fontColor(Color.Black)
+              .margin({ top: 8 })
           }
+          .width(0)
+          .flexGrow(1)
+          .alignItems(HorizontalAlign.Start)
 
-          Blank()
+          Column({ space: 8 }) {
+            Text(this.post.day)
+              .fontSize(48)
+              .fontWeight(FontWeight.Bold)
+              .fontColor(Color.Black)
 
-          Text(this.post.month)
-            .fontSize(20)
-            .fontWeight(FontWeight.Medium)
-            .fontFamily('Rounded')
-            .fontColor(Color.Black)
+            if (this.post.holiday?.length == 0) {
+              Text(this.post.month)
+                .fontSize(20)
+                .fontWeight(FontWeight.Bold)
+                .fontColor(Color.Black)
+            } else {
+              Text(this.post.holiday)
+                .fontSize(20)
+                .fontWeight(FontWeight.Bold)
+                .fontColor(Color.Black)
+            }
+          }
         }
+        .width('100%')
+        // .alignItems(VerticalAlign.Top)
+
+        // 日期信息
+        Column({ space: 2 }) {
+          Text(`${this.post.lunar}   ${CalendarDay.getWeekStr(this.post.weekday)}   ${this.post.solarTerm}`)
+            .fontColor(Color.Gray)
+          Text(this.post.weekStr)
+            .fontSize(16)
+            .fontColor(Color.Gray)
+        }
+        .margin({ top: 8, bottom: 8 })
       }
       .padding(this.cardPadding)
-      .backgroundColor(Color.White)
-      .clip(true)
-      .shadow({ radius: this.cardPadding / 2, color: Color.Gray, offsetX: 0, offsetY: 4 })      .padding({ left: this.cardPadding, right: this.cardPadding })
+      .width('100%')
     }
-    .backgroundColor('#F7F8FA') // Background color for the card
-    .borderRadius(this.cardPadding)
-    .padding(this.cardPadding)
+    .backgroundColor(Color.White)
+    .clip(true)
+    .shadow({
+      radius: 8,
+      color: Color.Gray,
+      offsetX: 0,
+      offsetY: 4
+    })
+    .margin(this.cardPadding)
+    .borderRadius(16)
   }
 }
 
