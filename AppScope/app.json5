@@ -1,0 +1,10 @@
+{
+  "app": {
+    "bundleName": "pet.zzz.season",
+    "vendor": "example",
+    "versionCode": 1000000,
+    "versionName": "1.0.0",
+    "icon": "$media:ic_cat_hm",
+    "label": "$string:app_name"
+  }
+}
