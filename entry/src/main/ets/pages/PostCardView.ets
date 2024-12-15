@@ -1,4 +1,5 @@
 import { CalendarDay } from '../model/CalendarDay'
+import { CircleShape } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -15,7 +16,7 @@ struct PostCardView {
         .width('100%')
         .aspectRatio(1.5) // Scales the image
         .objectFit(ImageFit.Cover)
-        .clip(CircleClip(this.cardPadding))
+        .clip(true)
         .backgroundColor(Color.Gray)
 
       // Post Details Section
@@ -60,22 +61,13 @@ struct PostCardView {
       }
       .padding(this.cardPadding)
       .backgroundColor(Color.White)
-      .clip(CircleClip(this.cardPadding / 2))
+      .clip(true)
       .shadow({ radius: this.cardPadding / 2, color: Color.Gray, offsetX: 0, offsetY: 4 })      .padding({ left: this.cardPadding, right: this.cardPadding })
     }
-    .width('90%')
     .backgroundColor('#F7F8FA') // Background color for the card
     .borderRadius(this.cardPadding)
     .padding(this.cardPadding)
   }
-}
-
-function CircleClip(cardPadding: number): boolean {
-  throw new Error('Function not implemented.')
-}
-
-function Spacer() {
-  throw new Error('Function not implemented.')
 }
 
 export { PostCardView }

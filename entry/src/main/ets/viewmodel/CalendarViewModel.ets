@@ -4,7 +4,7 @@ import { BaseResult } from '../model/BaseResult';
 import { JSON } from '@kit.ArkTS';
 
 export class CalendarViewModel {
-  calendarDays: Array<CalendarDay> = [];
+  calendarDays: CalendarDay[] = [];
   isLoading: boolean = false;
   error: string | null = null;
 
@@ -20,7 +20,8 @@ export class CalendarViewModel {
         header: { 'Content-Type': 'application/json' },
         readTimeout: 10000, // Timeout in milliseconds
       });
-
+      console.info("http result")
+      console.info(response.result.toString())
       // Check if response.result is valid and not null
       if (!response.result) {
         this.error = 'Empty response from server';
@@ -30,14 +31,14 @@ export class CalendarViewModel {
 
       // Safely parse and cast to BaseResult<CalendarDay[]>
       const baseResult = JSON.parse(response.result.toString()) as BaseResult<CalendarDay[]>;
-      if (baseResult.errorCode !== 0) {
-        this.error = baseResult.msg || 'Unknown error from server';
-        console.error(`Error from server: ${this.error}`);
-        return;
-      }
+      // if (baseResult.error_code != 200) {
+      //   this.error = baseResult.msg || 'Unknown error from server';
+      //   console.error(`Error from server: ${this.error}`);
+      //   return;
+      // }
 
       // Map the fetched data into calendarDays
-      this.calendarDays = (baseResult.data || []).map((item) => new CalendarDay(item));
+      this.calendarDays = baseResult.data!
     } catch (e) {
       // Handle any exceptions
       this.error = `Request failed: ${e.message || e}`;

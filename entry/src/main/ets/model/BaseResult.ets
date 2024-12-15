@@ -1,10 +1,10 @@
 export class BaseResult<T> {
-  errorCode?: number;
-  msg?: string;
-  data?: T;
+  error_code: number;
+  msg: string;
+  data: T;
 
   constructor(json: BaseResult<T>) {
-    this.errorCode = json.errorCode;
+    this.error_code = json.error_code;
     this.msg = json.msg;
     this.data = json.data;
   }
