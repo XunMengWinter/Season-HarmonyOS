@@ -1,7 +1,7 @@
 {
   "app": {
     "bundleName": "pet.zzz.season",
-    "vendor": "example",
+    "vendor": "猫与猫寻",
     "versionCode": 1000000,
     "versionName": "1.0.0",
     "icon": "$media:ic_cat_hm",

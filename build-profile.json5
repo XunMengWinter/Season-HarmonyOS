@@ -1,10 +1,37 @@
 {
   "app": {
-    "signingConfigs": [],
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "/Users/ice/.ohos/config/default_Season_8SmqCRZWb4atRV5MRYqapPstdybNcFCy2Aq8LhhJj8Q=.cer",
+          "storePassword": "0000001B2523E0130C84D610CF224812D22F735431380A52BE1B831B89B231930A0D7327CD7BA1FBFD7B68",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B85101DA5B022CF7958DCDC27B09877A7C12BA6E5FEDEC27EA4F030DBA9665CB1C346752047AD06",
+          "profile": "/Users/ice/.ohos/config/default_Season_8SmqCRZWb4atRV5MRYqapPstdybNcFCy2Aq8LhhJj8Q=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "/Users/ice/.ohos/config/default_Season_8SmqCRZWb4atRV5MRYqapPstdybNcFCy2Aq8LhhJj8Q=.p12"
+        }
+      },
+      {
+        "name": "WinterMac",
+        "type": "HarmonyOS",
+        "material": {
+          "storePassword": "000000189B30B411DCA205269492024EEE906BEDBD89D940FFE496D082436A8E24EE488D4EF3591B",
+          "certpath": "/Users/ice/DevEcoStudioProjects/keys/Winter.cer",
+          "keyAlias": "WinterMac",
+          "keyPassword": "00000018766A58CB1984B6666FC9FA719303F6CB4C46FF231E4AB57A562FABE2646A5DA5F994704A",
+          "profile": "/Users/ice/DevEcoStudioProjects/keys/SeasonProfileRelease.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "/Users/ice/DevEcoStudioProjects/keys/winter.p12"
+        }
+      }
+    ],
     "products": [
       {
         "name": "default",
-        "signingConfig": "default",
+        "signingConfig": "WinterMac",
         "compatibleSdkVersion": "5.0.1(13)",
         "runtimeOS": "HarmonyOS",
         "buildOption": {
