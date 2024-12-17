@@ -1,6 +1,7 @@
 {
   "src": [
     "pages/PostCardView",
-    "pages/CalendarView"
+    "pages/CalendarView",
+    "pages/PostDetailView"
   ]
 }

@@ -6,11 +6,11 @@
     },
     {
       "name": "EntryAbility_desc",
-      "value": "description"
+      "value": "A beautiful cat card calendar for all cat fans!"
     },
     {
       "name": "EntryAbility_label",
-      "value": "label"
+      "value": "Cat Calendar"
     }
   ]
 }

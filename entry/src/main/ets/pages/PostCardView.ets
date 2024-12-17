@@ -1,4 +1,5 @@
 import { CalendarDay } from '../model/CalendarDay'
+import { router } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -84,6 +85,11 @@ struct PostCardView {
       color: Color.Gray,
       offsetX: 0,
       offsetY: 4
+    })
+    .onClick(()=>{
+      router.pushUrl({url: 'pages/PostDetailView', params: {
+        post: this.post
+      }})
     })
     .margin(this.cardPadding)
     .borderRadius(16)

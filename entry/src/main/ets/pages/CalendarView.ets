@@ -3,7 +3,6 @@ import { CalendarViewModel } from '../viewmodel/CalendarViewModel';
 import { PostCardView } from './PostCardView';
 import PrivacyPolicyDialogBackUp from './PrivacyPolicyDialogBackUp';
 import { process } from '@kit.ArkTS';
-import storage from '@ohos.data.storage';
 import preferences from '@ohos.data.preferences';
 
 
@@ -66,19 +65,18 @@ struct CalendarView {
           })
         }
         // .expandSafeArea([SafeAreaType.SYSTEM])
+        // .expandSafeArea([SafeAreaType.CUTOUT])
+        .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM])
       }
     }
     .onAppear(() => {
       const context: Context = getContext(this) as Context;
-      preferences.getPreferences(context, "season", async (err, prefs) => {
-        if (err) {
-          console.error("获取Preferences失败:", err);
-          return;
-        }
-        console.log("获取Preferences成功");
+      preferences.getPreferences(context, "season")
+        .then(prefs=>{
         // 读取保存的数据
-        const hasAgree = await prefs.get('hasAgree', false);  // 默认值是 false
-        if(hasAgree == false){
+        const hasAgree = prefs.getSync('hasAgree', false);  // 默认值是 false
+          console.log("获取Preferences成功, 用户是否同意协议 " + hasAgree);
+          if(hasAgree == false){
           this.privacyPolicyDialog.open()
         }
       })
@@ -119,17 +117,14 @@ struct CalendarView {
     console.log("User agreed to the privacy policy.");
     console.log("用户点击了同意，保存记录");
     const context: Context = getContext(this) as Context;
-    preferences.getPreferences(context, "season", (err, prefs) => {
-      if (err) {
-        console.error("获取Preferences失败:", err);
-        return;
-      }
+    preferences.getPreferences(context, "season")
+      .then(prefs => {
       console.log("获取Preferences成功");
-
       // 存储数据到Preferences
       // 使用put方法保存key-value对
       prefs.put('hasAgree', true);
-    })
+      prefs.flush()
+      })
 
   }
 
