@@ -81,10 +81,10 @@ struct PostCardView {
     .backgroundColor(Color.White)
     .clip(true)
     .shadow({
-      radius: 8,
-      color: Color.Gray,
+      radius: 16,
+      color: "#4888",
       offsetX: 0,
-      offsetY: 4
+      offsetY: 8
     })
     .onClick(()=>{
       router.pushUrl({url: 'pages/PostDetailView', params: {

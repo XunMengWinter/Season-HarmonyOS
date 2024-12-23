@@ -21,7 +21,7 @@ export class CalendarViewModel {
         readTimeout: 10000, // Timeout in milliseconds
       });
       console.info("http result")
-      console.info(response.result.toString())
+      // console.info(response.result.toString())
       // Check if response.result is valid and not null
       if (!response.result) {
         this.error = 'Empty response from server';

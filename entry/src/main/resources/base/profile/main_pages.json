@@ -2,6 +2,8 @@
   "src": [
     "pages/PostCardView",
     "pages/CalendarView",
-    "pages/PostDetailView"
+    "pages/PostDetailView",
+    "pages/ZodiacPage",
+    "pages/CatAgeCalculatorPage"
   ]
 }

@@ -19,7 +19,7 @@
         "description": "$string:EntryAbility_desc",
         "icon": "$media:ic_cat_hm",
         "label": "$string:EntryAbility_label",
-        "startWindowIcon": "$media:startIcon",
+        "startWindowIcon": "$media:ic_cat_hm",
         "startWindowBackground": "$color:start_window_background",
         "exported": true,
         "skills": [
@@ -36,7 +36,8 @@
     ],
     "requestPermissions": [{
       "name": "ohos.permission.INTERNET"
-    }],
+    }
+    ],
     "extensionAbilities": [
       {
         "name": "EntryBackupAbility",
