@@ -45,14 +45,17 @@ struct CatAgeCalculatorPage {
         Text('猫咪年龄计算器')
           .fontSize(28)
           .fontWeight(FontWeight.Bold)
-          .fontColor(Color.Blue)
+          .fontColor("#ff4d91b5")
           .margin({ top: 20 });
 
-        Button(this.dateStr || '选择日期')
+        Button(("🐣  "  + this.dateStr) || '选择日期')
           .onClick(() => {
             this.showDatePicker = true;
           })
-          .width('80%')
+          .backgroundColor("#cdf4e3")
+          .fontColor("#505050")
+          .fontWeight(FontWeight.Bold)
+          .width('70%')
           .borderRadius(10)
           .margin(32)
           .padding(16);
@@ -67,8 +70,8 @@ struct CatAgeCalculatorPage {
               .flexGrow(1)
             Text(this.meowAgeStr)
               .fontSize(18)
-              .fontWeight(FontWeight.Medium)
-              .fontColor(Color.Blue);
+              .fontWeight(FontWeight.Bold)
+              .fontColor("#85adc2")
           }
           .width("80%")
           .padding(16);

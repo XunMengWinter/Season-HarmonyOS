@@ -1,6 +1,5 @@
+import BrowserUtil from "../net/BrowserUtil"
 import common from "@ohos.app.ability.common"
-import { Want } from "@kit.AbilityKit"
-import { BusinessError } from "@ohos.base"
 
 @CustomDialog
 export default struct PrivacyPolicyDialogBackUp {
@@ -18,7 +17,7 @@ export default struct PrivacyPolicyDialogBackUp {
           Span("我们是 猫与猫寻（杭州）智能科技有限公司，「猫咪日历」是我们开发的App。本App不会收集您的信息，请放心使用喵～\n\n请您阅读")
           Span("《猫咪日历-隐私政策》").fontColor(Color.Orange).onClick(() => {
             let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
-            this.startBrowsableAbility(context, "https://zzz.pet/?page_id=135");
+            BrowserUtil.startBrowsableAbility(context, "https://zzz.pet/?page_id=135");
           })
         }.fontSize(16).margin({
           left: 25,
@@ -64,16 +63,4 @@ export default struct PrivacyPolicyDialogBackUp {
     }
   }
 
-  startBrowsableAbility(context: common.UIAbilityContext, myurl: string): void {
-    let want: Want = {
-      action: 'ohos.want.action.viewData',
-      entities: ['entity.system.browsable'],
-      uri: myurl
-    };
-    context.startAbility(want).then(() => {
-      console.log('success')
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
-    });
-  }
 }

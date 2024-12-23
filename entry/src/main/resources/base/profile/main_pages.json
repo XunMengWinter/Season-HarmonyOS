@@ -4,6 +4,8 @@
     "pages/CalendarView",
     "pages/PostDetailView",
     "pages/ZodiacPage",
-    "pages/CatAgeCalculatorPage"
+    "pages/CatAgeCalculatorPage",
+    "pages/ArticleListPage",
+    "pages/BrowserPage"
   ]
 }

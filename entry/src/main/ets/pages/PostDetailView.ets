@@ -112,7 +112,7 @@ struct PostDetailView {
             Text("🐱 猫龄换算")
               .fontSize(16)
               .fontColor(Color.Gray)
-              .onClick(()=>{
+              .onClick(() => {
                 router.pushUrl({
                   url: "pages/CatAgeCalculatorPage"
                 })
@@ -121,7 +121,14 @@ struct PostDetailView {
             Text("养猫知识 📖")
               .fontSize(16)
               .fontColor(Color.Gray)
+              .onClick(() => {
+                router.pushUrl({
+                  url: "pages/ArticleListPage"
+                })
+              })
           }
+          .width('100%')
+          .justifyContent(FlexAlign.SpaceEvenly)
           .margin({ top: 32, bottom: 8 })
 
           Text("🐱 猫咪日历2025")
@@ -129,6 +136,7 @@ struct PostDetailView {
             .fontStyle(FontStyle.Italic)
             .margin({ top: 24 })
             .fontColor(Color.Gray)
+            .opacity(0.5)
             .onClick(() => {
               router.back()
             })
