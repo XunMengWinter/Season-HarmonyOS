@@ -1,12 +1,16 @@
 import { CalendarDay } from '../model/CalendarDay'
 import router from '@ohos.router'
+import { DayDetailViewModel } from '../viewmodel/DayDetailViewModel';
 
 @Entry
 @Component
 struct PostDetailView {
+  @State viewModel: DayDetailViewModel = new DayDetailViewModel();
+
   @Prop post: CalendarDay
   private cardPadding: number = 24
   private dateSpacing: number = 12
+
 
   aboutToAppear(): void {
     let params = router.getParams() as object
@@ -108,6 +112,10 @@ struct PostDetailView {
           }
           .margin({ top: 32, bottom: 8 })
 
+          if(this.viewModel.catFact) {
+            Text(this.viewModel.catFact?.translate[0].dst)
+              .margin({top: 16})
+          }
           Row({ space: 8 }) {
             Text("🐱 猫龄换算")
               .fontSize(16)
@@ -165,6 +173,9 @@ struct PostDetailView {
     }
     .alignContent(Alignment.Top)
     .expandSafeArea([SafeAreaType.SYSTEM])
+    .onAppear(()=>{
+      this.viewModel.fetchCatFact()
+    })
   }
 }
 
